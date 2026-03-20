@@ -1,0 +1,14 @@
+{
+  "name": "stress-ball",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhuyue",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@modelcontextprotocol/server-filesystem": "^2026.1.14"
+  }
+}
