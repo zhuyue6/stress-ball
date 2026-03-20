@@ -1,0 +1,27 @@
+<!-- 自定义底部导航：无图标资源依赖，纯文字 + 治愈配色 -->
+<view class="tab-bar safe-bottom">
+  <view
+    class="tab-item {{current === 'index' ? 'active' : ''}}"
+    data-path="index"
+    bindtap="onTap"
+  >
+    <text class="tab-icon">✨</text>
+    <text class="tab-text">玩耍</text>
+  </view>
+  <view
+    class="tab-item {{current === 'collection' ? 'active' : ''}}"
+    data-path="collection"
+    bindtap="onTap"
+  >
+    <text class="tab-icon">📖</text>
+    <text class="tab-text">图鉴</text>
+  </view>
+  <view
+    class="tab-item {{current === 'settings' ? 'active' : ''}}"
+    data-path="settings"
+    bindtap="onTap"
+  >
+    <text class="tab-icon">⚙️</text>
+    <text class="tab-text">设置</text>
+  </view>
+</view>

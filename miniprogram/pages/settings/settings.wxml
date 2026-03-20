@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="block">
+    <text class="block-title">感官反馈</text>
+    <view class="row">
+      <text class="row-label">捏捏音效</text>
+      <switch checked="{{settings.soundOn}}" bindchange="onSoundChange" color="#E8A0BF" />
+    </view>
+    <view class="row">
+      <text class="row-label">背景音乐</text>
+      <switch checked="{{settings.musicOn}}" bindchange="onMusicChange" color="#E8A0BF" />
+    </view>
+    <view class="row">
+      <text class="row-label">震动反馈</text>
+      <switch checked="{{settings.vibrateOn}}" bindchange="onVibrateChange" color="#E8A0BF" />
+    </view>
+  </view>
+
+  <view class="block">
+    <text class="block-title">画面</text>
+    <view class="row">
+      <text class="row-label">画质偏好</text>
+      <picker mode="selector" range="{{qualityLabels}}" value="{{qualityIndex}}" bindchange="onQualityChange">
+        <view class="picker-val">{{qualityLabels[qualityIndex]}}</view>
+      </picker>
+    </view>
+    <text class="hint">流畅模式减少阴影与动画层级，低配机更顺滑</text>
+  </view>
+
+  <view class="block">
+    <text class="block-title">告诉我们你的想法</text>
+    <textarea
+      class="feedback-area"
+      placeholder="想要的造型、场景或音效…（选填）"
+      placeholder-class="ph"
+      maxlength="500"
+      value="{{feedbackText}}"
+      bindinput="onFeedbackInput"
+    />
+    <button class="submit-btn" bindtap="submitFeedback" hover-class="submit-hover">提交反馈</button>
+  </view>
+
+  <view class="block muted">
+    <text class="fine-print">无失败、无限时、无强制分享。广告与内购相关能力可在后续版本按需接入。</text>
+  </view>
+
+  <custom-tab-bar current="settings" />
+</view>

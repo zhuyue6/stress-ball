@@ -1,0 +1,104 @@
+<!-- 核心玩耍页：单指/双指捏捏、拖拽、场景与造型切换 -->
+<view class="page {{qualityClass}}" style="background: {{sceneGradient}}">
+  <!-- 星空花园粒子层 -->
+  <view wx:if="{{sceneParticles === 'stars'}}" class="particles stars" aria-hidden="true">
+    <view class="star s1"></view>
+    <view class="star s2"></view>
+    <view class="star s3"></view>
+    <view class="star s4"></view>
+    <view class="star s5"></view>
+  </view>
+  <view wx:if="{{sceneParticles === 'curtain'}}" class="particles curtain" aria-hidden="true"></view>
+
+  <view class="top-bar">
+    <view class="coin-pill" bindtap="noop">
+      <text class="coin-icon">🪙</text>
+      <text class="coin-num">{{coins}}</text>
+      <text class="coin-label">解压币</text>
+    </view>
+  </view>
+
+  <!-- 首次轻提示，可关闭 -->
+  <view wx:if="{{showHint}}" class="hint-banner" bindtap="dismissHint">
+    <text>单指轻捏或拖动；双指同时按，反馈更强～</text>
+    <text class="hint-close">知道了</text>
+  </view>
+
+  <view class="stage">
+    <view
+      class="squish-wrap"
+      style="transform: translate({{offsetX}}px, {{offsetY}}px);"
+    >
+      <view
+        class="squish mat-{{toyMaterial}} {{pressing ? 'pressed' : ''}}"
+        style="transform: scale({{squishScale}}) rotate({{rotateDeg}}deg); transition-duration: {{transitionMs}}ms;"
+        bindtouchstart="onTouchStart"
+        bindtouchmove="onTouchMove"
+        bindtouchend="onTouchEnd"
+        bindtouchcancel="onTouchEnd"
+      >
+        <view class="squish-inner {{jellyWobble ? 'jelly-shake' : ''}}">
+          <text class="squish-emoji">{{toyEmoji}}</text>
+        </view>
+      </view>
+      <text class="toy-name">{{toyName}}</text>
+    </view>
+  </view>
+
+  <view class="toolbar">
+    <button class="tool-btn" bindtap="openToySheet" hover-class="tool-btn-hover">换造型</button>
+    <button class="tool-btn primary" bindtap="openSceneSheet" hover-class="tool-btn-hover">换场景</button>
+    <button class="tool-btn" open-type="share" hover-class="tool-btn-hover">分享给好友</button>
+  </view>
+
+  <!-- 造型底部弹层 -->
+  <view wx:if="{{toySheetVisible}}" class="sheet-mask" bindtap="closeSheets">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-title">选一个捏捏</view>
+      <scroll-view scroll-y class="sheet-scroll">
+        <view
+          wx:for="{{toyList}}"
+          wx:key="id"
+          class="sheet-row {{item.unlocked ? '' : 'locked'}}"
+          data-id="{{item.id}}"
+          bindtap="onSelectToy"
+        >
+          <text class="row-emoji">{{item.emoji}}</text>
+          <view class="row-info">
+            <text class="row-name">{{item.name}}</text>
+            <text class="row-desc">{{item.desc}}</text>
+          </view>
+          <view wx:if="{{item.unlocked}}" class="tag ok">已拥有</view>
+          <view wx:else class="tag price">{{item.unlockPrice}} 币</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 场景底部弹层 -->
+  <view wx:if="{{sceneSheetVisible}}" class="sheet-mask" bindtap="closeSheets">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-title">换一个场景</view>
+      <view
+        wx:for="{{sceneList}}"
+        wx:key="id"
+        class="sheet-row scene-row {{item.unlocked ? '' : 'locked'}}"
+        data-id="{{item.id}}"
+        bindtap="onSelectScene"
+      >
+        <view class="scene-preview" style="background: {{item.gradient}}"></view>
+        <view class="row-info">
+          <text class="row-name">{{item.name}}</text>
+          <text class="row-desc">{{item.unlockPrice === 0 ? '免费场景' : '解锁放松氛围'}}</text>
+        </view>
+        <view wx:if="{{item.unlocked}}" class="tag ok">已拥有</view>
+        <view wx:else class="tag price">{{item.unlockPrice}} 币</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 奖励轻提示 -->
+  <view wx:if="{{toast}}" class="toast">{{toast}}</view>
+
+  <custom-tab-bar current="index" />
+</view>

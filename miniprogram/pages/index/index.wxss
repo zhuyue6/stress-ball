@@ -1,0 +1,359 @@
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 160rpx;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stars .star {
+  position: absolute;
+  width: 6rpx;
+  height: 6rpx;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.stars .s1 {
+  top: 12%;
+  left: 20%;
+  animation-delay: 0s;
+}
+.stars .s2 {
+  top: 22%;
+  right: 18%;
+  animation-delay: 0.5s;
+}
+.stars .s3 {
+  top: 45%;
+  left: 12%;
+  animation-delay: 1s;
+}
+.stars .s4 {
+  bottom: 35%;
+  right: 25%;
+  animation-delay: 1.2s;
+}
+.stars .s5 {
+  top: 60%;
+  right: 40%;
+  animation-delay: 0.3s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.curtain {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 182, 193, 0.12) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(135, 206, 235, 0.12) 100%
+  );
+}
+
+.top-bar {
+  padding: 24rpx 32rpx 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.coin-pill {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 24rpx;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.coin-icon {
+  font-size: 28rpx;
+}
+
+.coin-num {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #C77B9E;
+}
+
+.coin-label {
+  font-size: 22rpx;
+  color: #888888;
+}
+
+.hint-banner {
+  margin: 16rpx 32rpx 0;
+  padding: 20rpx 24rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.5;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.hint-close {
+  color: #E8A0BF;
+  font-weight: 600;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52vh;
+  padding: 32rpx;
+}
+
+.squish-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+}
+
+.squish {
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #ffffff 0%, #ffe8f0 100%);
+  box-shadow: 0 16rpx 48rpx rgba(232, 160, 191, 0.35);
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 材质：过渡时间与阴影略有差异，增强「手感」认知 */
+.mat-soft_rubber {
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.mat-foam {
+  background: linear-gradient(145deg, #ffffff 0%, #e8f4fc 100%);
+  box-shadow: 0 12rpx 36rpx rgba(135, 206, 235, 0.3);
+}
+.mat-jelly {
+  background: linear-gradient(145deg, #fff5f8 0%, #ffc8dd 100%);
+  box-shadow: 0 18rpx 40rpx rgba(255, 150, 180, 0.35);
+}
+.mat-plush {
+  background: linear-gradient(145deg, #fffef5 0%, #fffacd 100%);
+  box-shadow: 0 14rpx 40rpx rgba(255, 235, 150, 0.35);
+}
+
+.squish.pressed {
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.squish-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.squish-emoji {
+  font-size: 120rpx;
+  line-height: 1;
+  user-select: none;
+}
+
+.jelly-shake {
+  animation: jellyShake 0.45s ease;
+}
+
+@keyframes jellyShake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg) scale(1.03);
+  }
+  75% {
+    transform: rotate(4deg) scale(0.98);
+  }
+}
+
+.toy-name {
+  margin-top: 28rpx;
+  font-size: 32rpx;
+  color: #555555;
+  font-weight: 600;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20rpx;
+  padding: 0 32rpx;
+}
+
+.tool-btn {
+  font-size: 26rpx;
+  padding: 0 28rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.92);
+  color: #666666;
+  border: none;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.tool-btn::after {
+  border: none;
+}
+
+.tool-btn.primary {
+  background: linear-gradient(135deg, #ffb6c1 0%, #e8a0bf 100%);
+  color: #ffffff;
+}
+
+.tool-btn-hover {
+  opacity: 0.88;
+}
+
+.sheet-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheet {
+  width: 100%;
+  max-height: 70vh;
+  background: #ffffff;
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 28rpx 24rpx 48rpx;
+  box-shadow: 0 -8rpx 32rpx rgba(0, 0, 0, 0.08);
+}
+
+.sheet-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #444444;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.sheet-scroll {
+  max-height: 55vh;
+}
+
+.sheet-row {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 20rpx;
+  margin-bottom: 16rpx;
+  border-radius: 16rpx;
+  background: #fafafa;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.sheet-row.locked {
+  opacity: 0.92;
+}
+
+.row-emoji {
+  font-size: 56rpx;
+  margin-right: 20rpx;
+}
+
+.row-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.row-name {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 600;
+}
+
+.row-desc {
+  font-size: 22rpx;
+  color: #888888;
+}
+
+.tag {
+  font-size: 22rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+}
+
+.tag.ok {
+  background: rgba(152, 251, 152, 0.35);
+  color: #3d8b3d;
+}
+
+.tag.price {
+  background: rgba(255, 182, 193, 0.4);
+  color: #a85a7a;
+}
+
+.scene-row {
+  flex-wrap: wrap;
+}
+
+.scene-preview {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+/* 流畅画质：略减阴影，减轻 GPU 压力 */
+.quality-smooth .squish {
+  box-shadow: 0 10rpx 28rpx rgba(232, 160, 191, 0.22);
+}
+
+.quality-smooth .star {
+  animation: none;
+  opacity: 0.5;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 200rpx;
+  transform: translateX(-50%);
+  z-index: 300;
+  padding: 20rpx 36rpx;
+  background: rgba(60, 60, 60, 0.88);
+  color: #ffffff;
+  font-size: 26rpx;
+  border-radius: 999rpx;
+  max-width: 80%;
+  text-align: center;
+}

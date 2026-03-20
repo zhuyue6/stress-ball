@@ -1,0 +1,17 @@
+/**
+ * 全局治愈系基础样式 — 马卡龙低饱和、柔和圆角
+ */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: #444444;
+  background-color: #FAFAFA;
+  box-sizing: border-box;
+}
+
+/* 安全区底部留白（配合自定义 tab） */
+.safe-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
