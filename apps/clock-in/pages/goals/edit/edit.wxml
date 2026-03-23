@@ -1,0 +1,35 @@
+<view class="page safe-bottom">
+  <view class="card field-card">
+    <text class="label">名称</text>
+    <input class="input" placeholder="例如：今年通过法考" value="{{name}}" bindinput="onNameInput" maxlength="40" />
+  </view>
+  <view class="card field-card">
+    <text class="label">描述</text>
+    <textarea class="textarea" placeholder="可选：补充说明" value="{{desc}}" bindinput="onDescInput" maxlength="500" />
+  </view>
+  <view class="card field-card">
+    <text class="label">截止日期</text>
+    <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+      <view class="picker-val">{{endDate || '不设置'}}</view>
+    </picker>
+  </view>
+  <view class="card field-card">
+    <text class="label">分类</text>
+    <picker mode="selector" range="{{tags}}" value="{{tagIndex}}" bindchange="onTagChange">
+      <view class="picker-val">{{tags[tagIndex]}}</view>
+    </picker>
+  </view>
+  <view class="card field-card">
+    <text class="label">优先级</text>
+    <picker mode="selector" range="{{priorities}}" range-key="label" value="{{priorityIndex}}" bindchange="onPriorityChange">
+      <view class="picker-val">{{priorities[priorityIndex].label}}</view>
+    </picker>
+  </view>
+  <view wx:if="{{id}}" class="card field-card">
+    <text class="label">状态</text>
+    <picker mode="selector" range="{{['进行中','已完成','已过期']}}" value="{{status === 'active' ? 0 : status === 'done' ? 1 : 2}}" bindchange="onStatusChange">
+      <view class="picker-val">{{status === 'done' ? '已完成' : status === 'expired' ? '已过期' : '进行中'}}</view>
+    </picker>
+  </view>
+  <button class="btn-primary save-btn" bindtap="onSave">保存</button>
+</view>

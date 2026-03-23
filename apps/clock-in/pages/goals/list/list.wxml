@@ -1,0 +1,38 @@
+<view class="page safe-bottom">
+  <view wx:if="{{showWelcome}}" class="mask" catchtouchmove="noop">
+    <view class="dialog card">
+      <text class="dialog-title">欢迎使用目标打卡</text>
+      <text class="dialog-body">数据默认保存在本机，可随时在「我的」中清空。提醒功能需你主动授权；关注公众号为可选增强，不关注也可完整使用目标与打卡功能。</text>
+      <button class="btn-primary dialog-btn" bindtap="closeWelcome">我知道了</button>
+    </view>
+  </view>
+
+  <view class="header">
+    <text class="title">进行中与计划</text>
+    <button class="btn-add" bindtap="onAddTap">+ 新建目标</button>
+  </view>
+
+  <view wx:if="{{goals.length === 0}}" class="empty card">
+    <text>还没有目标，点右上角新建一个吧～</text>
+  </view>
+
+  <block wx:for="{{goals}}" wx:key="id">
+    <view class="goal card" data-id="{{item.id}}" bindtap="onGoalTap">
+      <view class="goal-top">
+        <text class="goal-name">{{item.name}}</text>
+        <text class="tag status-{{item.status}}">{{item.status === 'done' ? '已完成' : item.status === 'expired' ? '已过期' : '进行中'}}</text>
+      </view>
+      <text class="text-muted goal-desc">{{item.desc || '暂无描述'}}</text>
+      <view class="goal-meta">
+        <text class="tag tag-soft">{{item.tag}}</text>
+        <text wx:if="{{item.endDate}}" class="text-muted">截止 {{item.endDate}}</text>
+      </view>
+      <view class="progress-wrap">
+        <view class="progress-bar">
+          <view class="progress-inner" style="width: {{item.progress || 0}}%;" />
+        </view>
+        <text class="text-muted progress-text">{{item.progress || 0}}%</text>
+      </view>
+    </view>
+  </block>
+</view>

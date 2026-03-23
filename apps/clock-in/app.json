@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/goals/list/list",
+    "pages/goals/detail/detail",
+    "pages/goals/edit/edit",
+    "pages/subgoal/edit/edit",
+    "pages/calendar/calendar",
+    "pages/reminders/list/list",
+    "pages/reminders/edit/edit",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "navigationBarTitleText": "目标打卡",
+    "navigationBarBackgroundColor": "#F0FAF5",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAFAFA",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#5CB894",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/goals/list/list",
+        "text": "目标"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历"
+      },
+      {
+        "pagePath": "pages/reminders/list/list",
+        "text": "提醒"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "__usePrivacyCheck__": true
+}

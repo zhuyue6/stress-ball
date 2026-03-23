@@ -1,5 +1,5 @@
 ---
-name: 微信开发标准专家
+name: wechat-dev-front-end
 description: 微信小程序、公众号、H5、支付开发专用技能，提供标准化规范和最佳实践
 ---
 

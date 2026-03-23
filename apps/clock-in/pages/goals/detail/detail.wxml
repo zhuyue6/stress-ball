@@ -1,0 +1,75 @@
+<view class="page safe-bottom" wx:if="{{goal}}">
+  <view class="card main-card">
+    <view class="row-between">
+      <text class="main-title">{{goal.name}}</text>
+      <text class="tag status-{{goal.status}}">{{goal.status === 'done' ? '已完成' : goal.status === 'expired' ? '已过期' : '进行中'}}</text>
+    </view>
+    <text class="text-muted block">{{goal.desc || '暂无描述'}}</text>
+    <view class="row-meta">
+      <text class="tag tag-soft">{{goal.tag}}</text>
+      <text wx:if="{{goal.endDate}}" class="text-muted">截止 {{goal.endDate}}</text>
+    </view>
+    <view class="progress-wrap">
+      <view class="progress-bar">
+        <view class="progress-inner" style="width: {{goal.progress || 0}}%;" />
+      </view>
+      <text class="text-muted">{{goal.progress || 0}}%</text>
+    </view>
+    <view class="actions">
+      <button class="btn-ghost sm" bindtap="onEditMainTap">编辑</button>
+      <button class="btn-ghost sm" bindtap="onReminderTap">设提醒</button>
+      <button wx:if="{{goal.status !== 'done'}}" class="btn-ghost sm" bindtap="onMarkMainDone">标为完成</button>
+      <button class="btn-ghost sm danger" bindtap="onDeleteGoal">删除</button>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-title">子目标</text>
+    <button class="btn-mini" bindtap="onAddSubTap">+ 添加</button>
+  </view>
+
+  <view wx:if="{{subGoals.length === 0}}" class="card empty">暂无子目标，拆解后更易坚持打卡～</view>
+
+  <block wx:for="{{subGoals}}" wx:key="id">
+    <view class="card sub-card">
+      <view class="row-between" data-id="{{item.id}}" bindtap="onSubTap">
+        <view class="sub-info">
+          <text class="sub-name">{{item.name}}</text>
+          <text class="text-muted sub-meta">{{item.frequency === 'daily' ? '每日' : item.frequency === 'weekly' ? '每周' : '单次'}}{{item.endDate ? ' · 截止 ' + item.endDate : ''}}</text>
+        </view>
+        <text class="tag sub-status-{{item.status}}">{{item.status === 'done' ? '完成' : item.status === 'expired' ? '过期' : '进行中'}}</text>
+      </view>
+      <button class="btn-primary checkin-btn" data-id="{{item.id}}" bindtap="openCheckin">一键打卡</button>
+    </view>
+  </block>
+</view>
+
+<view wx:if="{{checkinModal}}" class="mask" catchtouchmove="noop">
+  <view class="sheet card">
+    <text class="sheet-title">打卡</text>
+    <textarea class="note-area" placeholder="可选：文字备注" value="{{checkinNote}}" bindinput="onNoteInput" maxlength="200" />
+    <view class="img-row">
+      <block wx:for="{{checkinImages}}" wx:key="*this">
+        <view class="img-wrap">
+          <image class="thumb" src="{{item}}" mode="aspectFill" />
+          <text class="img-remove" data-index="{{index}}" bindtap="onRemoveImage">×</text>
+        </view>
+      </block>
+      <view wx:if="{{checkinImages.length < 3}}" class="img-add" bindtap="onChooseImage">+ 图片</view>
+    </view>
+    <text class="text-muted hint">图片仅保存在本机记录中；换设备不会同步（可后续接入云开发）。</text>
+    <view class="sheet-actions">
+      <button class="btn-ghost" bindtap="closeCheckin">取消</button>
+      <button class="btn-primary" bindtap="submitCheckin">确认打卡</button>
+    </view>
+    <view wx:if="{{recentCheckins.length}}" class="recent">
+      <text class="text-muted recent-title">最近记录</text>
+      <block wx:for="{{recentCheckins}}" wx:key="id">
+        <view class="recent-line">
+          <text>{{item.date}}</text>
+          <text class="text-muted">{{item.note || '无备注'}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
